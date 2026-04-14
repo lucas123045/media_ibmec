@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Média</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #22c55e;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .aprovado {
+      color: #22c55e;
+    }
+
+    .reprovado {
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Calculadora IBMEC</h1>
+
+    <input type="number" id="p1" placeholder="Prova 1">
+    <input type="number" id="p2" placeholder="Prova 2">
+    <input type="number" id="ac" placeholder="AC">
+
+    <button onclick="calcular()">Calcular Média</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      let p1 = parseFloat(document.getElementById("p1").value);
+      let p2 = parseFloat(document.getElementById("p2").value);
+      let ac = parseFloat(document.getElementById("ac").value);
+
+      if (isNaN(p1) || isNaN(p2) || isNaN(ac)) {
+        document.getElementById("resultado").innerHTML = "⚠️ Preencha tudo!";
+        return;
+      }
+
+      let media = (p1 * 0.4) + (p2 * 0.4) + (ac * 0.2);
+
+      let resultado = document.getElementById("resultado");
+
+      if (media >= 7) {
+        resultado.innerHTML = `Média: ${media.toFixed(2)}<br><span class="aprovado">✅ Aprovado</span>`;
+      } else {
+        resultado.innerHTML = `Média: ${media.toFixed(2)}<br><span class="reprovado">❌ Reprovado</span>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
